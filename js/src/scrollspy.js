@@ -70,9 +70,7 @@ class ScrollSpy {
     this._element = element
     this._scrollElement = element.tagName === 'BODY' ? window : element
     this._config = this._getConfig(config)
-    this._selector = `${this._config.target} ${SELECTOR_NAV_LINKS},` +
-                          `${this._config.target} ${SELECTOR_LIST_ITEMS},` +
-                          `${this._config.target} .${CLASS_NAME_DROPDOWN_ITEM}`
+    this._selector = `${this._config.target} ${SELECTOR_NAV_LINKS}, ${this._config.target} ${SELECTOR_LIST_ITEMS}, ${this._config.target} .${CLASS_NAME_DROPDOWN_ITEM}`
     this._offsets = []
     this._targets = []
     this._activeTarget = null
@@ -160,7 +158,7 @@ class ScrollSpy {
   _getConfig(config) {
     config = {
       ...Default,
-      ...typeof config === 'object' && config ? config : {}
+      ...(typeof config === 'object' && config ? config : {})
     }
 
     if (typeof config.target !== 'string' && isElement(config.target)) {
